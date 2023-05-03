@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Search App</title>
+    <script type="text/javascript" src="https://unpkg.com/brain.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Movie Search App</h1>
+      <form id="form">
+        <input type="text" placeholder="Search" id="search" class="search" />
+      </form>
+    </header>
+    <div id="tags"></div>
+    <div id="myNav" class="overlay">
+
+      <!-- Button to close the overlay navigation -->
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+      <!-- Overlay content -->
+      <div class="overlay-content" id="overlay-content"></div>
+
+      <a href="javascript:void(0)" class="arrow left-arrow" id="left-arrow">&#8656;</a>
+
+      <a href="javascript:void(0)" class="arrow right-arrow" id="right-arrow">&#8658;</a>
+
+    </div>
+    <main id="main"></main>
+    <div class="pagination">
+      <div class="page" id="prev">Previous Page</div>
+      <div class="current" id="current">1</div>
+      <div class="page" id="next">Next Page</div>
+    </div>
+    <!-- <input type="text" id="myInput" />
+<div id="output"></div> -->
+    <!-- HTML for the movie search app form -->
+    <form onsubmit="predictMovie(); return false;">
+      <label for="inputText">Enter a keyword or phrase:</label>
+      <input type="text" id="inputText" name="inputText" />
+      <button type="submit">Search</button>
+    </form>
+    <!-- JavaScript for making the neural network prediction and displaying the recommended movie -->
+    <script src="app.js"></script>
+    <!-- <script>
+      // Load the pre-trained neural network model
+      const network = new brain.recurrent.LSTM();
+    network.fromJSON([{    "id": 28,    "name": "Action",    "keywords": ["action", "fight", "explosion", "adventure"]
+  },
+  {
+    "id": 12,
+    "name": "Adventure",
+    "keywords": ["adventure", "journey", "explore", "treasure"]
+  },
+  {
+    "id": 16,
+    "name": "Animation",
+    "keywords": ["animation", "cartoon", "anime", "family"]
+  },
+  {
+    "id": 35,
+    "name": "Comedy",
+    "keywords": ["comedy", "funny", "laugh", "humor"]
+  },
+  {
+    "id": 80,
+    "name": "Crime",
+    "keywords": ["crime", "murder", "robbery", "detective"]
+  },
+  {
+    "id": 99,
+    "name": "Documentary",
+    "keywords": ["documentary", "real-life", "true story", "history"]
+  },
+  {
+    "id": 18,
+    "name": "Drama",
+    "keywords": ["drama", "emotional", "serious", "relationships"]
+  },
+  {
+    "id": 10751,
+    "name": "Family",
+    "keywords": ["family", "kids", "children", "parents"]
+  },
+  {
+    "id": 14,
+    "name": "Fantasy",
+    "keywords": ["fantasy", "magic", "mythical", "enchantment"]
+  },
+  {
+    "id": 36,
+    "name": "History",
+    "keywords": ["history", "past", "period", "biography"]
+  },
+  {
+    "id": 27,
+    "name": "Horror",
+    "keywords": ["horror", "fear", "terror", "scary"]
+  },
+  {
+    "id": 10402,
+    "name": "Music",
+    "keywords": ["music", "concert", "performer", "band"]
+  },
+  {
+    "id": 9648,
+    "name": "Mystery",
+    "keywords": ["mystery", "enigma", "puzzle", "clue"]
+  },
+  {
+    "id": 10749,
+    "name": "Romance",
+    "keywords": ["romance", "love", "heart", "passion"]
+  },
+  {
+    "id": 878,
+    "name": "Science Fiction",
+    "keywords": ["science fiction", "space", "aliens", "future"]
+  },
+  {
+    "id": 10770,
+    "name": "TV Movie",
+    "keywords": ["tv movie", "made for tv", "television", "small screen"]
+  },
+  {
+    "id": 53,
+    "name": "Thriller",
+    "keywords": ["thriller", "suspense", "tension", "excitement"]
+  },
+  {
+    "id": 10752,
+    "name": "War",
+    "keywords": ["war", "battle", "soldier", "military"]
+  },
+  {
+    "id": 37,
+    "name": "Western",
+    "keywords": ["western", "cowboy", "ranch", "frontier"]
+  }
+]);
+
+    // Define a function to make the neural network prediction
+    function predictMovie() {
+      
+        // Get the user's input text from the form
+      const inputText = document.getElementById('inputText').value;
+      
+      // Pass the input text to the neural network and get its prediction
+      const prediction = net.run(inputText);
+      
+      // Make an API request to the TMDB API to retrieve information about the recommended movie
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=1cf50e6248dc270629e802686245c2c8&query=${prediction}`)
+        .then(response => {
+          // Extract the relevant movie data from the API response
+          const movieData = response.data.results[0];
+          // Display the recommended movie to the user on the movie search app
+          const movieTitle = movieData.title;
+          const movieSynopsis = movieData.overview;
+          const moviePoster = `https://image.tmdb.org/t/p/w500/${movieData.poster_path}`;
+          document.getElementById('movieTitle').textContent = movieTitle;
+          document.getElementById('movieSynopsis').textContent = movieSynopsis;
+          document.getElementById('moviePoster').src = moviePoster;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    } -->
+  </script>
+  <!-- HTML for displaying the recommended movie to the user -->
+  <h2>Recommended Movie:</h2>
+  <h3 id="movieTitle"></h3>
+  <p id="movieSynopsis"></p>
+  <img id="moviePoster" src="" alt="Movie Poster">
+  </body>
+</html>
